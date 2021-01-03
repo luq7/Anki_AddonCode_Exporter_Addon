@@ -34,7 +34,7 @@ Save lazy people's time.
 
 
 ## Manual Installation
- * Download the folder and put it to your addon's file. [File location](https://docs.ankiweb.net/#/files?id=file-locations)
+ * Download the folder, `AddonsCodeExporter`(/AddonsCodeExporter) and put it to your addon's file. [File location](https://docs.ankiweb.net/#/files?id=file-locations)
 
 ## Feedback 
 Feel free to [open an issue ](https://github.com/luckas72/Anki_Addon_Exporter/issues/) if you find any bugs. Also, feel free to contribute.
