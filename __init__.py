@@ -1,17 +1,53 @@
-# import the main window object (mw) from aqt
 from aqt import mw
-# import the "show info" tool from utils.py
 from aqt.utils import showInfo
-# import all of the Qt GUI library
 from aqt.qt import *
 from .anki_addon_exporter import *
 
-# We're going to add a menu item below. First we want to create a function to
-# be called when the menu item is activated.
+
+
 class MyApp(QtWidgets.QMainWindow, anki_addon_exporter.Ui_Dialog):
+    """
+    GUI class: Creates an instance of anki_addon_exporter scene
+    
+    Parameters:
+    QtWidgets.QMainWindow: Main windows.
+    anki_addon_exporter.Ui_Dialog: The instance to be crated
+    """
     def __init__(self, parent=None): 
+        """
+        Attributes
+        -------------------
+        scriptDir: str 
+            used to get the absolute path for the logo: "anki_exporter_logo.png"
+        textEdit:  QTextEdit
+            the text edit field from GUI
+        directory: str
+            directory where the addons are at, e.g. for windows: C:/Users/{username}/AppData/Roaming/Anki2/addons21
+            for mac and linux refenrece: https://docs.ankiweb.net/#/files?id=file-locations
+        addonList: list of str
+            each cell of the list is an addon's code
+        foundAnkiAt: int
+            used to find the "Anki2" from the OS directory. 
+            e.g. C:/Users/{username}/AppData/Roaming/"---->Anki2<------"/addons21 
+        pathToFind : str 
+            the substring to look for in the OS directory
+        copyAll : str
+            all the elements in addonList in line separated format
+        clipboad : QtClipboard
+            used to copy all the addons code to the clipboard
+        bt_copy : QtPushButton
+        bt_Export: QtPushButton
+        ...
+        Methods 
+        ----------------------
+        textClear()      : return void
+        bt_Copy_handle() : return void
+        bt_Export_handle():return void
+        
+        """
         super(MyApp, self).__init__(parent)
         self.setupUi(self)
+        
         self.scriptDir = os.path.dirname(os.path.realpath(__file__))
         self.setWindowIcon(QtGui.QIcon(self.scriptDir+ os.path.sep + "anki_exporter_logo.png"))# Set icon for main scene
         self.textEdit.setText("""ヾ(^  ^ゞ)""")
@@ -35,15 +71,11 @@ class MyApp(QtWidgets.QMainWindow, anki_addon_exporter.Ui_Dialog):
         self.textEdit.cursorPositionChanged.connect(self.textClear)
         
     def textClear(self):
+        """
+        Clear the text edit for the first click
+        """
         self.textEdit.clear()
         self.textEdit.cursorPositionChanged.disconnect(self.textClear)
-
-    def bt_Sync_handle(self):
-        deck_id = mw.col.decks.id('ANKI_ADDON_CODES')
-        deck = mw.col.decks.get(deck_id)
-        mw.col.decks.save(deck)
-        mw.col.reset()
-        mw.reset()
 
     def bt_Copy_handle(self):
         """
@@ -82,9 +114,6 @@ def testFunction():
     except Exception as e:
         print(e)
 
-# create a new menu item, "test"
-action = QAction("Test", mw)
-# set it to call testFunction when it's clicked
+action = QAction("Anki_Addon_Code_Export", mw)
 action.triggered.connect(testFunction)
-# and add it to the tools menu
 mw.form.menuTools.addAction(action)
