@@ -58,7 +58,7 @@ class MyApp(QtWidgets.QMainWindow, anki_addon_exporter.Ui_Dialog):
         self.foundAnkiAt=None
         self.pathToFind='Anki2'
         self.copyAll=""
-
+        self.firstRunFlag=True
         # Creating a messagebox
         self.msgBox=QtWidgets.QMessageBox()
         self.msgBox.setWindowIcon(QtGui.QIcon(self.scriptDir+ os.path.sep + "anki_exporter_logo.png")) #Set icon for msgbox
@@ -74,8 +74,9 @@ class MyApp(QtWidgets.QMainWindow, anki_addon_exporter.Ui_Dialog):
         """
         Clear the text edit for the first click
         """
-        self.textEdit.clear()
-        self.textEdit.cursorPositionChanged.disconnect(self.textClear)
+        if self.firstRunFlag:
+            self.textEdit.clear()
+            self.firstRunFlag=False
 
     def bt_Copy_handle(self):
         """
