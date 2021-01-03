@@ -28,7 +28,10 @@ An application that would extract all your add-on's code (numbers), so you could
 Save lazy people's time.
 
 ## Screenshoot
-[`Anki Addons Code Export Addon`](ankiEx.gif)
+<p align="center">
+<img width=75% height=75% src="ankiEx.gif" alt="Anki Addons Code Export Addon" titel= "Anki addon gif">
+</p>
+
 
 ## Manual Installation
  * Download the folder and put it to your addon's file. [File location](https://docs.ankiweb.net/#/files?id=file-locations)
