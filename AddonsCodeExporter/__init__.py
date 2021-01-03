@@ -40,7 +40,6 @@ class MyApp(QtWidgets.QMainWindow, anki_addon_exporter.Ui_Dialog):
         ...
         Methods 
         ----------------------
-        textClear()      : return void
         bt_Copy_handle() : return void
         bt_Export_handle():return void
         
@@ -50,7 +49,6 @@ class MyApp(QtWidgets.QMainWindow, anki_addon_exporter.Ui_Dialog):
         
         self.scriptDir = os.path.dirname(os.path.realpath(__file__))
         self.setWindowIcon(QtGui.QIcon(self.scriptDir+ os.path.sep + "anki_exporter_logo.png"))# Set icon for main scene
-        self.textEdit.setText("""ヾ(^  ^ゞ)""")
         self.textEdit.setEnabled(True)
         # Varaible declaration
         self.directory=None
@@ -68,15 +66,7 @@ class MyApp(QtWidgets.QMainWindow, anki_addon_exporter.Ui_Dialog):
         # Event handling 
         self.bt_copy.clicked.connect(self.bt_Copy_handle)     # Copy All button handle
         self.bt_Export.clicked.connect(self.bt_Export_handle) # Export button hanlde
-        self.textEdit.cursorPositionChanged.connect(self.textClear)
         
-    def textClear(self):
-        """
-        Clear the text edit for the first click
-        """
-        if self.firstRunFlag:
-            self.textEdit.clear()
-            self.firstRunFlag=False
 
     def bt_Copy_handle(self):
         """
