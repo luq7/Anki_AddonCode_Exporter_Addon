@@ -1,5 +1,5 @@
 <p align="center">
-  <img width=50% height=50% src="anki_exporter_logo.png">
+  <img width=50% height=50% src="AddonsCodeExporter/anki_exporter_logo.png">
 </p>
 
 
